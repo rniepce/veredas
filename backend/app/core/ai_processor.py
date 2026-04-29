@@ -47,19 +47,16 @@ def extract_process(text: str) -> dict:
     # Limita o texto para evitar tokens excessivos
     truncated = text[:80_000]
 
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model=_DEPLOYMENT(),
-        messages=[
+        input=[
             {"role": "system", "content": _EXTRACT_SYSTEM},
             {"role": "user", "content": f"Texto do processo:\n\n{truncated}"},
         ],
-        temperature=1,
-        max_completion_tokens=4096,
+        max_output_tokens=4096,
     )
 
-    raw = response.choices[0].message.content
-    # Tolera respostas envolvidas em ```json ... ``` ou com texto extra antes/depois
-    raw = raw.strip()
+    raw = response.output_text.strip()
     if raw.startswith("```"):
         raw = raw.split("```", 2)[1]
         if raw.startswith("json"):
@@ -82,14 +79,13 @@ def chat(messages: list[dict], process_text: str) -> str:
 
     system = _CHAT_SYSTEM_TEMPLATE.format(process_text=process_text[:80_000])
 
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model=_DEPLOYMENT(),
-        messages=[
+        input=[
             {"role": "system", "content": system},
             *messages,
         ],
-        temperature=1,
-        max_completion_tokens=8192,
+        max_output_tokens=8192,
     )
 
-    return response.choices[0].message.content
+    return response.output_text
