@@ -55,10 +55,16 @@ def extract_process(text: str) -> dict:
         ],
         temperature=1,
         max_completion_tokens=4096,
-        response_format={"type": "json_object"},
     )
 
     raw = response.choices[0].message.content
+    # Tolera respostas envolvidas em ```json ... ``` ou com texto extra antes/depois
+    raw = raw.strip()
+    if raw.startswith("```"):
+        raw = raw.split("```", 2)[1]
+        if raw.startswith("json"):
+            raw = raw[4:]
+        raw = raw.strip()
     return json.loads(raw)
 
 
