@@ -4,7 +4,7 @@ interface CollapsibleSectionProps {
   title: string
   badge?: string | number
   defaultOpen?: boolean
-  variant?: 'teses' | 'preliminares' | 'decisao' | 'notas' | 'chat'
+  variant?: 'teses' | 'preliminares' | 'decisao' | 'notas' | 'chat' | 'voto'
   icon?: string
   children: React.ReactNode
 }
