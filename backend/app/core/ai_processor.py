@@ -16,7 +16,7 @@ def _get_client() -> AzureOpenAI:
     return _client
 
 
-_DEPLOYMENT = lambda: os.environ.get("AZURE_OPENAI_DEPLOYMENT", "gpt-5.5")
+_DEPLOYMENT = lambda: os.environ.get("AZURE_OPENAI_DEPLOYMENT", "gpt-5.4-mini")
 
 _EXTRACT_SYSTEM = """Você é um assistente jurídico especializado em processos do TJMG.
 Analise o texto do processo judicial fornecido e extraia as informações em JSON válido.
