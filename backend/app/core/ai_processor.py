@@ -33,12 +33,31 @@ Esquema esperado:
   "recorrido": "string",
   "advogado_sustentante": "string",
   "parte_sustentante": "string",
-  "teses": ["string"],
+  "teses": [
+    {
+      "tese": "enunciado curto e objetivo da tese (1 frase)",
+      "fundamento_legal": "lei, artigos e dispositivos invocados (ex: art. 186 do CC, CDC art. 14)",
+      "fato_relevante": "fato concreto do processo que sustenta a tese",
+      "jurisprudencia": "súmulas, precedentes, REsp/STJ/STF citados (ou null se não houver)"
+    }
+  ],
   "preliminares": ["string"],
-  "sintese_decisao_1grau": "string"
+  "sintese_decisao_1grau": {
+    "texto": "resumo objetivo da sentença de 1º grau (procedência, improcedência, condenações)",
+    "documentos": [
+      {
+        "id": "ID, número de ordem ou referência do documento (ex: 'Doc. 23', 'ID 87234567', 'fls. 145-160')",
+        "descricao": "tipo e função do documento (ex: 'Sentença', 'Laudo pericial', 'Contrato de prestação de serviços')"
+      }
+    ]
+  }
 }
 
-Se um campo não for encontrado, use null. As teses e preliminares devem ser listas de strings curtas e objetivas."""
+Regras:
+- Se um campo não for encontrado, use null (ou [] para listas).
+- As teses devem cobrir TODOS os argumentos recursais — extraia uma para cada ponto distinto.
+- Em "documentos" da sentença, liste apenas os documentos que a sentença EXPLICITAMENTE cita ou em que se fundamenta.
+- Use os identificadores exatos como aparecem no texto (PJe usa "ID", outros sistemas usam "Doc." ou número de ordem)."""
 
 
 def extract_process(text: str) -> dict:

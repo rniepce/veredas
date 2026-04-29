@@ -87,7 +87,7 @@ export function App() {
                   <TesesPanel teses={processData.teses ?? []} />
                   <PreliminarsPanel preliminares={processData.preliminares ?? []} />
                   <div className="dashboard-full">
-                    <DecisaoPanel sintese={processData.sintese_decisao_1grau} />
+                    <DecisaoPanel decisao={processData.sintese_decisao_1grau} />
                   </div>
                   <div className="dashboard-full">
                     <NotasPanel processId={processId} />
