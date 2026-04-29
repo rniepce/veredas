@@ -6,7 +6,7 @@ aptPkgs = ["tesseract-ocr", "tesseract-ocr-por", "tesseract-ocr-eng"]
 [phases.install]
 cmds = [
   "cd frontend && npm ci",
-  "pip install -r backend/requirements.txt"
+  "python -m pip install -r backend/requirements.txt"
 ]
 
 [phases.build]
