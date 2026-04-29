@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import type { ChatMessage } from '../types'
 import { sendChat } from '../services/api'
 import { CollapsibleSection } from './CollapsibleSection'
@@ -75,7 +77,13 @@ export function ChatPanel({ processId }: { processId: string }) {
               <div className="bubble-label">
                 {m.role === 'user' ? 'Magistrado' : 'Assistente IA'}
               </div>
-              <div className="bubble-text">{m.content}</div>
+              <div className="bubble-text">
+                {m.role === 'assistant' ? (
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
+                ) : (
+                  m.content
+                )}
+              </div>
             </div>
           ))}
           {loading && (
