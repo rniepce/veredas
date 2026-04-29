@@ -1,7 +1,7 @@
 providers = ["node", "python"]
 
 [phases.setup]
-nixPkgs = ["tesseract", "tesseract-lang"]
+aptPkgs = ["tesseract-ocr", "tesseract-ocr-por", "tesseract-ocr-eng"]
 
 [phases.install]
 cmds = [
