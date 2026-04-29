@@ -602,7 +602,7 @@ main {
 .chat-bubble.assistant .bubble-text blockquote {
   border-left: 3px solid var(--tan);
   padding-left: 10px; margin: 6px 0;
-  color: var(--gray-mid);
+  color: var(--gray-light);
 }
 .chat-bubble.assistant .bubble-text a {
   color: var(--navy); text-decoration: underline;
@@ -617,6 +617,118 @@ main {
   padding: 4px 8px; text-align: left;
 }
 .chat-bubble.assistant .bubble-text th { background: var(--cream-dark); }
+
+/* ─────────────────────────────────────────
+   VOTO (editor de voto)
+───────────────────────────────────────── */
+.voto-upload { display: flex; flex-direction: column; gap: 12px; padding: 4px; }
+.voto-upload-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.voto-upload-or {
+  font-family: var(--font-cond); font-size: 11px;
+  color: var(--tan); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.voto-upload-help { font-size: 13px; color: var(--gray-light); }
+.voto-paste {
+  width: 100%;
+  border: 1.5px solid var(--cream-mid);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-family: inherit; font-size: 13px; line-height: 1.6;
+  color: var(--navy);
+  resize: vertical;
+}
+.voto-paste:focus { outline: none; border-color: var(--navy); }
+.voto-upload-actions { display: flex; gap: 8px; }
+.voto-error {
+  padding: 8px 12px; border-radius: 4px;
+  background: #fbecec; color: #8a2424; font-size: 13px;
+}
+.voto-btn {
+  padding: 7px 14px; border-radius: var(--radius-sm);
+  background: white; color: var(--navy);
+  border: 1.5px solid var(--cream-mid);
+  font-family: var(--font-cond); font-weight: 700;
+  font-size: 12px; letter-spacing: 0.05em;
+  text-transform: uppercase; cursor: pointer;
+  transition: all var(--transition);
+}
+.voto-btn:hover:not(:disabled) {
+  border-color: var(--navy); background: var(--cream);
+}
+.voto-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.voto-btn.primary { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+.voto-btn.primary:hover:not(:disabled) { background: var(--navy-mid); }
+.voto-btn.ghost { border-style: dashed; }
+
+.voto-editor-wrap {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.voto-toolbar {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  padding: 6px 8px; background: var(--cream);
+  border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.tb-btn {
+  min-width: 28px; height: 28px;
+  padding: 0 7px;
+  border: 1px solid transparent; background: transparent;
+  border-radius: 3px; cursor: pointer;
+  font-family: var(--font-cond); font-weight: 700; font-size: 13px;
+  color: var(--navy);
+  transition: all var(--transition);
+}
+.tb-btn:hover:not(:disabled) { background: white; border-color: var(--cream-mid); }
+.tb-btn.on { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+.tb-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.tb-sep {
+  width: 1px; background: var(--cream-mid); margin: 2px 4px;
+}
+
+.voto-editor {
+  border: 1px solid var(--cream-dark);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: white;
+  min-height: 280px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.voto-editor .ProseMirror {
+  padding: 16px 20px;
+  font-size: 14px; line-height: 1.7;
+  color: var(--navy);
+  outline: none;
+  min-height: 260px;
+}
+.voto-editor .ProseMirror p { margin: 0 0 10px; }
+.voto-editor .ProseMirror p:last-child { margin-bottom: 0; }
+.voto-editor .ProseMirror h1,
+.voto-editor .ProseMirror h2,
+.voto-editor .ProseMirror h3 {
+  font-family: var(--font-cond); font-weight: 700;
+  margin: 14px 0 8px; color: var(--navy);
+}
+.voto-editor .ProseMirror h1 { font-size: 20px; }
+.voto-editor .ProseMirror h2 { font-size: 17px; }
+.voto-editor .ProseMirror h3 { font-size: 15px; }
+.voto-editor .ProseMirror ul,
+.voto-editor .ProseMirror ol { margin: 6px 0 10px; padding-left: 28px; }
+.voto-editor .ProseMirror li { margin: 3px 0; }
+.voto-editor .ProseMirror blockquote {
+  border-left: 3px solid var(--cream-mid);
+  padding-left: 12px; margin: 8px 0;
+  color: var(--gray-light); font-style: italic;
+}
+.voto-editor .ProseMirror mark {
+  background: #fff59d; padding: 0 2px; border-radius: 2px;
+}
+.voto-editor .ProseMirror s { color: var(--gray-light); }
+
+.voto-actions {
+  display: flex; gap: 8px; padding-top: 4px;
+  flex-wrap: wrap;
+}
 
 .typing {
   display: flex; gap: 4px; align-items: center;

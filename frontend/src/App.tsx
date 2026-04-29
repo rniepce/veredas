@@ -9,6 +9,7 @@ import { PreliminarsPanel } from './components/PreliminarsPanel'
 import { DecisaoPanel } from './components/DecisaoPanel'
 import { NotasPanel } from './components/NotasPanel'
 import { ChatPanel } from './components/ChatPanel'
+import { VotoPanel } from './components/VotoPanel'
 
 export function App() {
   const [appState, setAppState] = useState<AppState>('splash')
@@ -91,6 +92,9 @@ export function App() {
                   </div>
                   <div className="dashboard-full">
                     <NotasPanel processId={processId} />
+                  </div>
+                  <div className="dashboard-full">
+                    <VotoPanel />
                   </div>
                   <div className="dashboard-full">
                     <ChatPanel processId={processId} />
