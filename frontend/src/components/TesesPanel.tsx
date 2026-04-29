@@ -2,7 +2,13 @@ import { CollapsibleSection } from './CollapsibleSection'
 
 export function TesesPanel({ teses }: { teses: string[] }) {
   return (
-    <CollapsibleSection title="Teses do Recurso" badge={teses.length} defaultOpen>
+    <CollapsibleSection
+      title="Teses do Recurso"
+      badge={teses.length}
+      variant="teses"
+      icon="⚖"
+      defaultOpen
+    >
       {teses.length === 0 ? (
         <p className="empty-msg">Nenhuma tese identificada no processo.</p>
       ) : (

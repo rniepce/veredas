@@ -9,15 +9,17 @@ export function Header({ onReset, showReset }: HeaderProps) {
       <div className="hi">
         <div className="ht">
           <div className="hbrand">
-            <div className="hlogo-placeholder" />
+            <div className="hlogo-mark">
+              <span className="hlogo-v">V</span>
+            </div>
             <div>
-              <div className="htitle">VEREDAS</div>
-              <div className="hsub">Sistema de Apoio à Sustentação Oral · TJMG</div>
+              <div className="htitle">Veredas</div>
+              <div className="hsub">Apoio à Sustentação Oral · TJMG</div>
             </div>
           </div>
           {showReset && (
             <button className="btu" onClick={onReset}>
-              Carregar outro processo
+              ← Carregar outro processo
             </button>
           )}
         </div>

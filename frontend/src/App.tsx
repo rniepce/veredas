@@ -20,10 +20,9 @@ export function App() {
 
   function enterApp() {
     setSplashVisible(false)
-    setTimeout(() => setAppState('upload'), 650)
+    setTimeout(() => setAppState('upload'), 700)
   }
 
-  // Tecla ESC no splash
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Enter' && appState === 'splash') enterApp()
@@ -61,7 +60,10 @@ export function App() {
     <>
       {/* Splash */}
       <div id="splash" className={splashVisible ? '' : 'hidden'}>
-        <div className="sp-name">VEREDAS</div>
+        <div className="sp-logo-mark">
+          <span className="sp-logo-v">V</span>
+        </div>
+        <div className="sp-name">Veredas</div>
         <div className="sp-sub">Tribunal de Justiça de Minas Gerais</div>
         <div className="sp-div" />
         <button className="sp-btn" onClick={enterApp}>
@@ -72,23 +74,15 @@ export function App() {
 
       {appState !== 'splash' && (
         <>
-          <Header
-            onReset={handleReset}
-            showReset={appState === 'dashboard'}
-          />
+          <Header onReset={handleReset} showReset={appState === 'dashboard'} />
           <main>
             {appState === 'upload' && (
-              <UploadSection
-                onFile={handleFile}
-                loading={loading}
-                error={error}
-              />
+              <UploadSection onFile={handleFile} loading={loading} error={error} />
             )}
 
             {appState === 'dashboard' && processData && processId && (
               <>
                 <ProcessPanel data={processData} />
-
                 <div className="dashboard-grid">
                   <TesesPanel teses={processData.teses ?? []} />
                   <PreliminarsPanel preliminares={processData.preliminares ?? []} />

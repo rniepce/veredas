@@ -6,6 +6,16 @@ interface UploadSectionProps {
   error: string | null
 }
 
+function UploadIcon() {
+  return (
+    <svg className="dz-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="17 8 12 3 7 8"/>
+      <line x1="12" y1="3" x2="12" y2="15"/>
+    </svg>
+  )
+}
+
 export function UploadSection({ onFile, loading, error }: UploadSectionProps) {
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragging, setDragging] = useState(false)
@@ -23,7 +33,11 @@ export function UploadSection({ onFile, loading, error }: UploadSectionProps) {
   }
 
   return (
-    <div className="upload-wrap">
+    <div className="upload-page">
+      <div className="upload-eyebrow">TJMG · Câmara Cível</div>
+      <h1 className="upload-heading">Carregar Processo</h1>
+      <p className="upload-sub">Faça o upload do PDF do e-proc para iniciar a análise</p>
+
       <div
         className={`dropzone${dragging ? ' dragging' : ''}${loading ? ' uploading' : ''}`}
         onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
@@ -38,22 +52,30 @@ export function UploadSection({ onFile, loading, error }: UploadSectionProps) {
           style={{ display: 'none' }}
           onChange={handleChange}
         />
+
         {loading ? (
           <>
             <div className="dz-spinner" />
-            <div className="dz-title">Analisando processo...</div>
-            <div className="dz-sub">Extraindo texto e processando com IA</div>
+            <div className="dz-title">Analisando processo</div>
+            <div className="dz-sub">Extraindo texto e processando com IA...</div>
           </>
         ) : (
           <>
-            <div className="dz-icon">⬆</div>
-            <div className="dz-title">Arraste o PDF do processo aqui</div>
+            <div className="dz-icon-wrap">
+              <UploadIcon />
+            </div>
+            <div className="dz-title">Arraste o PDF aqui</div>
             <div className="dz-sub">ou clique para selecionar o arquivo</div>
-            <div className="dz-hint">Arquivo PDF do e-proc · até 50 MB</div>
+            <span className="dz-hint">PDF do e-proc · até 50 MB</span>
           </>
         )}
       </div>
-      {error && <div className="upload-error">{error}</div>}
+
+      {error && (
+        <div className="upload-error">
+          <span>⚠</span> {error}
+        </div>
+      )}
     </div>
   )
 }

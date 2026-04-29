@@ -42,39 +42,57 @@ export function ChatPanel({ processId }: { processId: string }) {
     }
   }
 
+  const suggestions = [
+    'Qual é a principal tese do recorrente?',
+    'Houve preliminares rejeitadas?',
+    'O que foi decidido em 1º grau?',
+  ]
+
   return (
-    <CollapsibleSection title="Chat com o Processo" defaultOpen={false}>
+    <CollapsibleSection
+      title="Chat com o Processo"
+      variant="chat"
+      icon="💬"
+      defaultOpen={false}
+    >
       <div className="chat-wrap">
         <div className="chat-messages">
           {messages.length === 0 && (
             <div className="chat-empty">
+              <div className="chat-empty-icon">💬</div>
               <div className="chat-empty-title">Pergunte sobre o processo</div>
               <div className="chat-empty-sub">
-                Ex: "Qual é a principal tese do recorrente?" · "Houve preliminares rejeitadas?" · "O que foi decidido em 1º grau?"
+                {suggestions.map((s, i) => (
+                  <span key={i}>
+                    "{s}"{i < suggestions.length - 1 ? ' · ' : ''}
+                  </span>
+                ))}
               </div>
             </div>
           )}
           {messages.map((m, i) => (
             <div key={i} className={`chat-bubble ${m.role}`}>
-              <div className="bubble-label">{m.role === 'user' ? 'Você' : 'IA'}</div>
+              <div className="bubble-label">
+                {m.role === 'user' ? 'Magistrado' : 'Assistente IA'}
+              </div>
               <div className="bubble-text">{m.content}</div>
             </div>
           ))}
           {loading && (
             <div className="chat-bubble assistant">
-              <div className="bubble-label">IA</div>
+              <div className="bubble-label">Assistente IA</div>
               <div className="bubble-text typing">
                 <span /><span /><span />
               </div>
             </div>
           )}
-          {error && <div className="chat-error">{error}</div>}
+          {error && <div className="chat-error">⚠ {error}</div>}
           <div ref={bottomRef} />
         </div>
         <div className="chat-input-row">
           <textarea
             className="chat-input"
-            placeholder="Digite sua pergunta... (Enter para enviar)"
+            placeholder="Digite sua pergunta sobre o processo... (Enter para enviar, Shift+Enter para nova linha)"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKey}

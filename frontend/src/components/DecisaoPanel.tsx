@@ -2,7 +2,12 @@ import { CollapsibleSection } from './CollapsibleSection'
 
 export function DecisaoPanel({ sintese }: { sintese: string | null }) {
   return (
-    <CollapsibleSection title="Decisão de 1º Grau" defaultOpen>
+    <CollapsibleSection
+      title="Decisão de 1º Grau"
+      variant="decisao"
+      icon="🏛"
+      defaultOpen
+    >
       {sintese ? (
         <p className="decisao-text">{sintese}</p>
       ) : (
