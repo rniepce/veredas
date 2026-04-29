@@ -3,7 +3,7 @@ import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Highlight from '@tiptap/extension-highlight'
-import mammoth from 'mammoth/mammoth.browser'
+import * as mammoth from 'mammoth'
 import { CollapsibleSection } from './CollapsibleSection'
 import { copyAsPlainText, downloadAsDocx } from '../utils/votoExport'
 
