@@ -1,12 +1,12 @@
 providers = ["node", "python"]
 
 [phases.setup]
-aptPkgs = ["tesseract-ocr", "tesseract-ocr-por", "tesseract-ocr-eng"]
+aptPkgs = ["tesseract-ocr", "tesseract-ocr-por", "tesseract-ocr-eng", "python3-pip"]
 
 [phases.install]
 cmds = [
   "cd frontend && npm ci",
-  "python -m pip install -r backend/requirements.txt"
+  "pip3 install -r backend/requirements.txt"
 ]
 
 [phases.build]
